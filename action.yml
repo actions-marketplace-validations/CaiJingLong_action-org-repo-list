@@ -1,0 +1,12 @@
+name: 'Your action name'
+description: 'Your action description'
+author: 'Your name or organization here'
+inputs:
+  # You can define multiple inputs
+  github-token:
+    required: true
+    description: 'Github token'
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
