@@ -14,7 +14,7 @@ The action will output the following variables:
 
 Next, we can use the `table` variable to do everything.
 
-```
+```yml
 name: Generate organization profile README.md
 
 on:
