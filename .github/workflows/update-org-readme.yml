@@ -1,10 +1,6 @@
 name: Generate organization profile README.md
 
 on:
-  push:
-    branches:
-      - master
-      - main
   schedule:
     # Run at every hour
     - cron: '0 * * * *'
