@@ -28,7 +28,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PERSON_TOKEN }}
         run: |
-          export table_output=${{ steps.org_repo_list.outputs.table }}
           export TARGET_FILE=/tmp/.github/profile/README.md
           gh repo clone ${{ env.ORG }}/.github /tmp/.github
           cd /tmp/.github
@@ -39,7 +38,7 @@ jobs:
           echo "## Welcome to the Flutter Candies organization\n" >> $TARGET_FILE
           echo "Custom Flutter Candies (packages) for you to build your Flutter app easily. Enjoy it!\n" >> $TARGET_FILE
           echo "## Organization Repositories\n" >> $TARGET_FILE
-          echo "$table_output" >> $TARGET_FILE
+          echo "${{ steps.org_repo_list.outputs.table }}" >> $TARGET_FILE
           echo "\n" >> $TARGET_FILE
           git add .
           git commit -m "Update profile/README.md from CI"
