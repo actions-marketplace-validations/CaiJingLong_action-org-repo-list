@@ -10,7 +10,7 @@
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "package": "ncc build --source-map --license licenses.txt",
-    "test": "jest",
+    "test": "pnpm install && pn exec jest",
     "dist": "pnpm run build && pnpm run package",
     "all": "pnpm lint && pnpm test && pnpm dist"
   },
