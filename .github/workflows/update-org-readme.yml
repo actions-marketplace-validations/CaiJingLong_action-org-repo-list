@@ -38,11 +38,13 @@ jobs:
             rm $TARGET_FILE
           fi
           touch $TARGET_FILE
-          echo "## Welcome to the Flutter Candies organization\n" >> $TARGET_FILE
-          echo "Custom Flutter Candies (packages) for you to build your Flutter app easily. Enjoy it!\n" >> $TARGET_FILE
-          echo "## Organization Repositories\n" >> $TARGET_FILE
+          echo "## Welcome to the Flutter Candies organization" >> $TARGET_FILE
+          echo "" >> $TARGET_FILE
+          echo "Custom Flutter Candies (packages) for you to build your Flutter app easily. Enjoy it!" >> $TARGET_FILE
+          echo "" >> $TARGET_FILE
+          echo "## Organization Repositories" >> $TARGET_FILE
           echo "${{ steps.org_repo_list.outputs.table }}" >> $TARGET_FILE
-          echo "\n" >> $TARGET_FILE
+          echo "" >> $TARGET_FILE
           gh auth setup-git -h github.com
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
