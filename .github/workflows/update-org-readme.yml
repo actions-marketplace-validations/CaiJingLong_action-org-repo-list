@@ -8,6 +8,7 @@ on:
   schedule:
     # Run at every hour
     - cron: '0 * * * *'
+  workflow_dispatch:
 
 env:
 #   ORG: fluttercandies
@@ -20,12 +21,12 @@ jobs:
       - uses: caijinglong/action-org-repo-list@main
         id: org_repo_list
         with:
-          github-token: ${{ secrets.PersonToken }}
+          github-token: ${{ secrets.PERSON_TOKEN }}
           org: ${{ env.ORG }}
           exclude-repo-names: '.github,.github-workflow'
       - name: Generate README.md
         env:
-          GH_TOKEN: ${{ secrets.PersonToken }}
+          GH_TOKEN: ${{ secrets.PERSON_TOKEN }}
         run: |
           export table_output=${{ steps.org_repo_list.outputs.table }}
           export TARGET_FILE=/tmp/.github/profile/README.md

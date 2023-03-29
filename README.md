@@ -27,7 +27,8 @@ on:
   schedule:
     # Run at every hour
     - cron: '0 * * * *'
-
+    workflow_dispatch:
+    
 env:
   ORG: fluttercandies
 
