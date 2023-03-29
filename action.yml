@@ -1,11 +1,19 @@
-name: 'Your action name'
-description: 'Your action description'
-author: 'Your name or organization here'
+name: 'action-org-repo-list'
+description: 'Make organization repo list README'
+author: 'Caijinglong'
 inputs:
-  # You can define multiple inputs
   github-token:
     required: true
-    description: 'Github token'
+    description: 'Github token, e.g. ${{ secrets.GITHUB_TOKEN }}'
+  org:
+    required: true
+    description: 'Github organization, e.g. "fluttercandies"'
+  exclude-repo-names:
+    required: false
+    description: 'Exclude glob pattern for repositories, e.g. ".github,docs", default: ".github"'
+  contains-archived:
+    required: false
+    description: 'Contains archived repositories. default: false'
 
 runs:
   using: 'node16'

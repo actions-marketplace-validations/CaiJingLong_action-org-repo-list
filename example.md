@@ -52,7 +52,7 @@
 | [flutter_ali_auth](https://github.com/fluttercandies/flutter_ali_auth) | Flutter Ali Auth Plugin 阿里云一键登录Flutter插件 | 19 | 2023-03-28T08:13:04Z |
 | [flutter_live_activities](https://github.com/fluttercandies/flutter_live_activities) | Flutter Live Activities Plugin | 19 | 2023-01-15T13:24:41Z |
 | [extra_hittest_area](https://github.com/fluttercandies/extra_hittest_area) | Manually add the extra hitTest area of a widget without changing its size or layout. | 17 | 2023-03-08T11:35:38Z |
-| [baidupan](https://github.com/fluttercandies/baidupan) | Baidu net disk api for dart, 百度网盘的 dart 库 | 16 | 2023-03-21T04:09:29Z |
+| [baidupan](https://github.com/fluttercandies/baidupan) | Baidu net disk api for dart, 百度网盘的 dart 库 | 17 | 2023-03-29T11:16:12Z |
 | [flutter_mlkit_scan_plugin](https://github.com/fluttercandies/flutter_mlkit_scan_plugin) | <no description> | 15 | 2023-03-12T09:04:47Z |
 | [flutter_slider_view](https://github.com/fluttercandies/flutter_slider_view) | A slider view widget that supports custom type models and various configs. | 15 | 2022-08-17T12:45:56Z |
 | [flutter_learning_tests](https://github.com/fluttercandies/flutter_learning_tests) | 学习 Flutter 路上的点滴及小测~ | 14 | 2022-01-06T12:35:02Z |
@@ -77,7 +77,7 @@
 | [simple_provider](https://github.com/fluttercandies/simple_provider) | flutter simple provider | 3 | 2020-05-06T07:21:02Z |
 | [flutter_candies_package_tools](https://github.com/fluttercandies/flutter_candies_package_tools) | tool to create package and demo | 3 | 2020-09-04T08:13:33Z |
 | [ff_annotation_route_core](https://github.com/fluttercandies/ff_annotation_route_core) | The core library for ff_annotation_route | 3 | 2022-08-09T10:14:42Z |
-| [dext](https://github.com/fluttercandies/dext) | <no description> | 3 | 2022-12-03T14:02:26Z |
+| [dext](https://github.com/fluttercandies/dext) | Some extension for dart | 3 | 2023-03-29T13:16:20Z |
 | [ff_native_screenshot](https://github.com/fluttercandies/ff_native_screenshot) | A Flutter plugin to take or listen screenshot(support Platform Views) for Android and iOS with native code. | 3 | 2022-08-26T09:31:25Z |
 | [blue_flutter](https://github.com/fluttercandies/blue_flutter) | blue_flutter是flutter的蓝牙通讯插件 | 2 | 2021-02-22T01:22:32Z |
 | [flutter_bindings_compatible](https://github.com/fluttercandies/flutter_bindings_compatible) | Provides compatible bindings instance across different Flutter version. | 1 | 2022-05-16T01:14:38Z |
@@ -85,6 +85,4 @@
 | [flutter_clean](https://github.com/fluttercandies/flutter_clean) | help clean all of Flutter and Dart projects | 1 | 2022-05-30T03:19:53Z |
 | [env2dart](https://github.com/fluttercandies/env2dart) | A simple way to generate `dart` code from a `.env` file. | 1 | 2023-03-22T05:54:17Z |
 | [flutter_files_downloader](https://github.com/fluttercandies/flutter_files_downloader) | <no description> | 0 | 2021-10-25T03:11:08Z |
-| [.github](https://github.com/fluttercandies/.github) | <no description> | 0 | 2021-10-27T09:15:06Z |
 | [upgrade_tool](https://github.com/fluttercandies/upgrade_tool) | Resolve warnings caused by xxxbinding. Instance in Flutter 3.0 | 0 | 2022-06-03T04:09:31Z |
-

@@ -1,22 +1,3 @@
-# Auto make organization .github/profile/README.md
-
-The organization profile README.md is used to display the organization profile.
-
-The action will automatically generate the organization profile README.md file based on the organization profile README.md template file.
-
-A example of the organization profile README.md like this: [example](./example.md)
-
-## Configuration
-
-Step1: Create a repository named .github in the organization. If the repository already exists, skip this step.
-
-Step2: Config a workflow file, **DO NOT** use the `.github` repository to do it, I suggest you create a repository named `.github-workflow` in the organization, and config the workflow file in it.
-
-Step3: Config secrets token, the token must have the organization/.github write permission.
-
-Step4: Config the workflow file, the workflow file like this:
-
-```yaml
 name: Generate organization profile README.md
 
 on:
@@ -29,7 +10,8 @@ on:
     - cron: '0 * * * *'
 
 env:
-  ORG: fluttercandies
+#   ORG: fluttercandies
+  ORG: flutter-fix-something
 
 jobs:
   build:
@@ -61,4 +43,3 @@ jobs:
           git add .
           git commit -m "Update profile/README.md from CI"
           git push
-```

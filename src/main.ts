@@ -1,48 +1,36 @@
 import * as core from '@actions/core'
 import {env} from 'process'
-import {getClient} from './repo'
+import makeTable from './make'
 
 async function run(): Promise<void> {
   try {
-    const org = env.GITHUB_ORG
+    const org = core.getInput('org')
+    const githubToken = core.getInput('github-token')
+
     if (!org) {
-      throw new Error('GITHUB_ORG env is not set')
-    }
-    const github = getClient()
-
-    const allRepo = await github.paginate(github.repos.listForOrg, {
-      org
-    })
-
-    let repoInfo = allRepo.map(repo => {
-      let desc = repo.description ?? '<no description>'
-      if (desc.includes('|')) {
-        desc = desc.replace(/\|/g, '\\|')
-      }
-      return {
-        name: repo.name,
-        stars: repo.stargazers_count ?? 0,
-        url: repo.html_url,
-        description: desc,
-        latestCommit: repo.updated_at,
-        archived: (repo.archived = repo.archived ?? false)
-      }
-    })
-
-    // sort by stars
-    repoInfo = repoInfo
-      .sort((a, b) => {
-        return b.stars - a.stars
-      })
-      .filter(repo => !repo.archived)
-
-    // make a markdown table
-    let table = `| Name | Description | Stars | Latest Commit |\n| ---- | --- | ----------- | ------------- |\n`
-    for (const repo of repoInfo) {
-      table += `| [${repo.name}](${repo.url}) | ${repo.description} | ${repo.stars} | ${repo.latestCommit} |\n`
+      throw new Error('org is required')
     }
 
-    core.info(table)
+    if (!githubToken) {
+      throw new Error('github-token is required')
+    }
+
+    env.GH_TOKEN = githubToken
+
+    const containsArchivedInput = core.getInput('contains-archived') || 'false'
+    const containsArchived = containsArchivedInput === 'true'
+    const excludeRepoNamesInput =
+      core.getInput('exclude-repo-names') || '.github,.github-workflow'
+    const excludeRepoNames = excludeRepoNamesInput.split(',')
+
+    const output = await makeTable(
+      org,
+      githubToken,
+      containsArchived,
+      excludeRepoNames
+    )
+
+    core.setOutput('table', output)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

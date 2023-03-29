@@ -1,14 +1,15 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "action-make-org-repo-list",
+  "version": "1.0.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "A GitHub Action to make a list of all repos in an organization",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
+    "make-example": "pnpm run build && node lib/make_example.js",
     "package": "ncc build --source-map --license licenses.txt",
     "test": "pnpm install && pnpm exec jest",
     "dist": "pnpm run build && pnpm run package",
