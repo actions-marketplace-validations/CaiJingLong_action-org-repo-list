@@ -43,6 +43,7 @@ jobs:
           echo "Custom Flutter Candies (packages) for you to build your Flutter app easily. Enjoy it!" >> $TARGET_FILE
           echo "" >> $TARGET_FILE
           echo "## Organization Repositories" >> $TARGET_FILE
+          echo "" >> $TARGET_FILE
           echo "${{ steps.org_repo_list.outputs.table }}" >> $TARGET_FILE
           echo "" >> $TARGET_FILE
           gh auth setup-git -h github.com
