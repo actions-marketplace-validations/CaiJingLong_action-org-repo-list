@@ -5,5 +5,6 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest'
   },
+  testCommand:'pnpm run test',
   verbose: true
 }

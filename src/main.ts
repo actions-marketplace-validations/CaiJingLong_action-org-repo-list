@@ -1,16 +1,43 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import {env} from 'process'
+import {getClient} from './repo'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+    const org = env.GITHUB_ORG
+    if (!org) {
+      throw new Error('GITHUB_ORG env is not set')
+    }
+    const github = getClient()
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    const allRepo = await github.paginate(github.repos.listForOrg, {
+      org
+    })
 
-    core.setOutput('time', new Date().toTimeString())
+    let repoInfo = allRepo.map(repo => {
+      return {
+        name: repo.name,
+        url: repo.html_url,
+        description: repo.description,
+        latestCommit: repo.updated_at,
+        archived: (repo.archived = repo.archived ?? false)
+      }
+    })
+
+    // sort by latest commit
+    repoInfo = repoInfo
+      .sort((a, b) => {
+        return (a.latestCommit ?? '')?.localeCompare(b.latestCommit ?? '')
+      })
+      .filter(repo => !repo.archived)
+
+    // make a markdown table
+    let table = `| Name | Description | Latest Commit |\n| ---- | ----------- | ------------- |\n`
+    for (const repo of repoInfo) {
+      table += `| [${repo.name}](${repo.url}) | ${repo.description} | ${repo.latestCommit} |\n`
+    }
+
+    core.info(table)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
