@@ -31,6 +31,9 @@ jobs:
           export TARGET_FILE=/tmp/.github/profile/README.md
           gh repo clone ${{ env.ORG }}/.github /tmp/.github
           cd /tmp/.github
+          if [ ! -d "profile" ]; then
+            mkdir profile
+          fi
           if [ -f "$TARGET_FILE" ]; then
             rm $TARGET_FILE
           fi
