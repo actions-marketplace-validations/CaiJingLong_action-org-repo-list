@@ -15,26 +15,31 @@ async function run(): Promise<void> {
     })
 
     let repoInfo = allRepo.map(repo => {
+      let desc = repo.description ?? '<no description>'
+      if (desc.includes('|')) {
+        desc = desc.replace(/\|/g, '\\|')
+      }
       return {
         name: repo.name,
+        stars: repo.stargazers_count ?? 0,
         url: repo.html_url,
-        description: repo.description,
+        description: desc,
         latestCommit: repo.updated_at,
         archived: (repo.archived = repo.archived ?? false)
       }
     })
 
-    // sort by latest commit
+    // sort by stars
     repoInfo = repoInfo
       .sort((a, b) => {
-        return (a.latestCommit ?? '')?.localeCompare(b.latestCommit ?? '')
+        return b.stars - a.stars
       })
       .filter(repo => !repo.archived)
 
     // make a markdown table
-    let table = `| Name | Description | Latest Commit |\n| ---- | ----------- | ------------- |\n`
+    let table = `| Name | Description | Stars | Latest Commit |\n| ---- | --- | ----------- | ------------- |\n`
     for (const repo of repoInfo) {
-      table += `| [${repo.name}](${repo.url}) | ${repo.description} | ${repo.latestCommit} |\n`
+      table += `| [${repo.name}](${repo.url}) | ${repo.description} | ${repo.stars} | ${repo.latestCommit} |\n`
     }
 
     core.info(table)

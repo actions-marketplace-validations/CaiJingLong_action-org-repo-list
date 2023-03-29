@@ -1,15 +1,7 @@
-# Template for github action
+# Auto make organization .github/profile/README.md
 
-Default, use [pnpm](https://pnpm.io/) to manage dependencies and run scripts.
+The organization profile README.md is used to display the organization profile.
 
-Use jest to run tests.
+The action will automatically generate the organization profile README.md file based on the organization profile README.md template file.
 
-## Use the template
-
-1. Click the `Use this template` button
-1. Create a new repository
-1. To do you own thing
-
-## LICENSE
-
-[MIT](LICENSE)
+A example of the organization profile README.md like this: [example](./example.md)
