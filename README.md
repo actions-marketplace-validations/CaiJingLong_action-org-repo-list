@@ -15,36 +15,35 @@ The action will output the following variables:
 Next, we can use the `table` variable to do everything.
 
 ```yml
-name: Generate organization profile README.md
+name: "Generate fluttercandies profile/README.md"
 
 on:
-  push:
-    branches:
-      - master
-      - main
   schedule:
-    # Run at every hour, See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onschedule
-    - cron: '0 * * * *'
+    # Runs every 30 minutes
+    - cron: '0/30 0/1 * * *'
   workflow_dispatch:
 
 env:
-#   ORG: fluttercandies
-  ORG: flutter-fix-something
+  ORG: fluttercandies
+  # ORG: flutter-fix-something
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: caijinglong/action-org-repo-list@main
+      - uses: caijinglong/action-org-repo-list@v1
         id: org_repo_list
         with:
           github-token: ${{ secrets.PERSON_TOKEN }}
           org: ${{ env.ORG }}
           exclude-repo-names: '.github,.github-workflow'
-          wrap-with-details: 'true'
-      - shell: bash
+          wrap-with-details: true
+      - name: Generate README.md
+        env:
+          GH_TOKEN: ${{ secrets.PERSON_TOKEN }}
         run: |
-          echo "${{ steps.org_repo_list.outputs.table }}" >> $TARGET_FILE
+          echo "${{ steps.org_repo_list.outputs.table }}" > README.md
+          cat README.md
 ```
 
 ## Example
@@ -58,3 +57,7 @@ Step2: Config a workflow file, **DO NOT** use the `.github` repository to do it,
 Step3: Config secrets token, the token must have the organization/.github write permission.
 
 Step4: Config the workflow file, the workflow file like [this](.github/workflows/update-org-readme.yml).
+
+## Preview
+
+The example workflow file will run every 30 minutes. See [preview](https://github.com/flutter-fix-something).
