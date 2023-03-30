@@ -2,7 +2,7 @@ name: Generate organization profile README.md
 
 on:
   schedule:
-    # Run at every hour
+    # Runs at 00:00, 06:00, 12:00 and 18:00
     - cron: '0 0,6,12,18 * * *'
   workflow_dispatch:
 
@@ -20,6 +20,7 @@ jobs:
           github-token: ${{ secrets.PERSON_TOKEN }}
           org: ${{ env.ORG }}
           exclude-repo-names: '.github,.github-workflow'
+          wrap-with-details: true
       - name: Generate README.md
         env:
           GH_TOKEN: ${{ secrets.PERSON_TOKEN }}
