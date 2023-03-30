@@ -3,7 +3,7 @@ name: Generate organization profile README.md
 on:
   schedule:
     # Run at every hour
-    - cron: '0 * * * *'
+    - cron: '0 0,6,12,18 * * *'
   workflow_dispatch:
 
 env:
@@ -42,6 +42,7 @@ jobs:
           echo "" >> $TARGET_FILE
           echo "${{ steps.org_repo_list.outputs.table }}" >> $TARGET_FILE
           echo "" >> $TARGET_FILE
+          echo "Created on $(date)" >> $TARGET_FILE
           gh auth setup-git -h github.com
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"

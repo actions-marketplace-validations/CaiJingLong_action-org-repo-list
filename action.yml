@@ -14,6 +14,9 @@ inputs:
   contains-archived:
     required: false
     description: 'Contains archived repositories. default: false'
+  wrap-with-details:
+    required: true
+    description: 'Wrap with details tag. default: true'
 
 runs:
   using: 'node16'

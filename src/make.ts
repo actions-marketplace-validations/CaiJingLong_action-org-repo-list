@@ -4,7 +4,8 @@ export default async function makeTable(
   org: string,
   githubToken: string,
   containsArchived: boolean,
-  excludeRepoNames: string[]
+  excludeRepoNames: string[],
+  wrapWithDetails: boolean
 ): Promise<string> {
   const github = getClient(githubToken)
 
@@ -39,6 +40,14 @@ export default async function makeTable(
   let table = `| Name | Description | Stars | Latest Commit |\n| ---- | --- | ----------- | ------------- |\n`
   for (const repo of repoInfo) {
     table += `| [${repo.name}](${repo.url}) | ${repo.description} | ${repo.stars} | ${repo.latestCommit} |\n`
+  }
+
+  if (wrapWithDetails) {
+    table = `<details><summary>📖 Repositories</summary>
+
+${table}
+
+</details>`
   }
 
   return table

@@ -1,3 +1,5 @@
+<details><summary>📖 Repositories</summary>
+
 | Name | Description | Stars | Latest Commit |
 | ---- | --- | ----------- | ------------- |
 | [wechat_flutter](https://github.com/fluttercandies/wechat_flutter) | wechat_flutter  Flutter版本微信，一个优秀的Flutter即时通讯IM开源库！ | 2234 | 2023-03-29T09:58:14Z |
@@ -86,3 +88,6 @@
 | [env2dart](https://github.com/fluttercandies/env2dart) | A simple way to generate `dart` code from a `.env` file. | 1 | 2023-03-22T05:54:17Z |
 | [flutter_files_downloader](https://github.com/fluttercandies/flutter_files_downloader) | <no description> | 0 | 2021-10-25T03:11:08Z |
 | [upgrade_tool](https://github.com/fluttercandies/upgrade_tool) | Resolve warnings caused by xxxbinding. Instance in Flutter 3.0 | 0 | 2022-06-03T04:09:31Z |
+
+
+</details>

@@ -23,7 +23,7 @@ on:
       - master
       - main
   schedule:
-    # Run at every hour
+    # Run at every hour, See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#onschedule
     - cron: '0 * * * *'
   workflow_dispatch:
 
@@ -41,6 +41,7 @@ jobs:
           github-token: ${{ secrets.PERSON_TOKEN }}
           org: ${{ env.ORG }}
           exclude-repo-names: '.github,.github-workflow'
+          wrap-with-details: 'true'
       - shell: bash
         run: |
           echo "${{ steps.org_repo_list.outputs.table }}" >> $TARGET_FILE

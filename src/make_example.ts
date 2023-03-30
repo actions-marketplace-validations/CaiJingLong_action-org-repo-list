@@ -18,7 +18,8 @@ async function run(): Promise<void> {
     org,
     githubToken,
     containsArchived,
-    excludeRepoNames
+    excludeRepoNames,
+    true
   )
 
   fs.writeFileSync('example.md', table)

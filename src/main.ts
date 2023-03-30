@@ -22,12 +22,15 @@ async function run(): Promise<void> {
     const excludeRepoNamesInput =
       core.getInput('exclude-repo-names') || '.github,.github-workflow'
     const excludeRepoNames = excludeRepoNamesInput.split(',')
+    const wrapWithDetailsInput = core.getInput('wrap-with-details') || 'false'
+    const wrapWithDetails = wrapWithDetailsInput === 'true'
 
     const output = await makeTable(
       org,
       githubToken,
       containsArchived,
-      excludeRepoNames
+      excludeRepoNames,
+      wrapWithDetails
     )
 
     core.setOutput('table', output)

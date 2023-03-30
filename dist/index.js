@@ -61,7 +61,9 @@ function run() {
             const containsArchived = containsArchivedInput === 'true';
             const excludeRepoNamesInput = core.getInput('exclude-repo-names') || '.github,.github-workflow';
             const excludeRepoNames = excludeRepoNamesInput.split(',');
-            const output = yield (0, make_1.default)(org, githubToken, containsArchived, excludeRepoNames);
+            const wrapWithDetailsInput = core.getInput('wrap-with-details') || 'false';
+            const wrapWithDetails = wrapWithDetailsInput === 'true';
+            const output = yield (0, make_1.default)(org, githubToken, containsArchived, excludeRepoNames, wrapWithDetails);
             core.setOutput('table', output);
         }
         catch (error) {
@@ -91,7 +93,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const repo_1 = __nccwpck_require__(8085);
-function makeTable(org, githubToken, containsArchived, excludeRepoNames) {
+function makeTable(org, githubToken, containsArchived, excludeRepoNames, wrapWithDetails) {
     return __awaiter(this, void 0, void 0, function* () {
         const github = (0, repo_1.getClient)(githubToken);
         const allRepo = yield github.paginate(github.repos.listForOrg, {
@@ -123,6 +125,13 @@ function makeTable(org, githubToken, containsArchived, excludeRepoNames) {
         let table = `| Name | Description | Stars | Latest Commit |\n| ---- | --- | ----------- | ------------- |\n`;
         for (const repo of repoInfo) {
             table += `| [${repo.name}](${repo.url}) | ${repo.description} | ${repo.stars} | ${repo.latestCommit} |\n`;
+        }
+        if (wrapWithDetails) {
+            table = `<details><summary>📖 Repositories</summary>
+
+${table}
+
+</details>`;
         }
         return table;
     });
